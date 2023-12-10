@@ -1,3 +1,4 @@
+#include "main.h"
 #include <stddef.h>
 #include <stdlib.h>
 
@@ -9,17 +10,18 @@
  */
 unsigned int binary_to_uint(const char *b)
 {
-	if (b == NULL)
-	return (0);
+	int s;
+	unsigned int dec_val = 0;
 
-	while (*b != '\0')
+	if (b == NULL)
+		return (0);
+
+	for (s = 0; b[s]; s++)
 	{
-		if (*b != '0' && *b != '1')
-		{
+		if (b[s] < '0' || b[s] > '1')
 			return (0);
-		}
-	 b++;
+		dec_val = 2 * dec_val + (b[s] - '0');
 	}
 
-	return ((unsigned int)strtol(b, NULL, 2));
+	return (dec_val);
 }
